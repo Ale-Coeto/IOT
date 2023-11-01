@@ -10,7 +10,8 @@ const Dashboard = () => {
     useEffect(() => {
         // socket.on("receive_temp", (data) => {
         //     setTemp(data.message);
-        // });
+        // }); 
+        
     }, [socket]);
 
     const widgets = [
