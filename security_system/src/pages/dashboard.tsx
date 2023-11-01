@@ -8,9 +8,9 @@ const Dashboard = () => {
     const [temp, setTemp] = useState(0);
 
     useEffect(() => {
-        socket.on("receive_temp", (data) => {
-            setTemp(data.message);
-        });
+        // socket.on("receive_temp", (data) => {
+        //     setTemp(data.message);
+        // });
     }, [socket]);
 
     const widgets = [

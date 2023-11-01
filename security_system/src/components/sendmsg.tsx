@@ -9,7 +9,7 @@ const SendMessage = () => {
 
 
     const sendMessage = () => {
-        socket.emit("send_message", { message: data });
+        // socket.emit("send_message", { message: data });
         console.log("send message")
     }
 
@@ -18,9 +18,9 @@ const SendMessage = () => {
         send.mutate({ temp: temp })
     }
     useEffect(() => {
-        socket.on("recieve_temp", (data) => {
-            alert(data.message);
-        });
+        // socket.on("recieve_temp", (data) => {
+        //     alert(data.message);
+        // });
     }, [socket]);
 
     return (
