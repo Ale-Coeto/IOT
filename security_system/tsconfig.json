@@ -28,6 +28,6 @@
     "**/*.tsx",
     "**/*.cjs",
     "**/*.mjs"
-, "src/server/api/test.ts"  ],
+, "src/pages/api/test.ts"  ],
   "exclude": ["node_modules"]
 }
