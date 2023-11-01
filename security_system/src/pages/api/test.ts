@@ -7,8 +7,6 @@ import axios from "axios";
 
 type ResponseData = {
   message: string;
-  //   message_dos: string;
-  //   message_full: string;
 };
 
 export default function handler(
