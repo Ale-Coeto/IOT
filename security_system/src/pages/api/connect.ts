@@ -27,13 +27,15 @@ export default function handler(
   //     connectionId: id,
   //   });
   // }
-  const addDevice = api.device.add.useMutation();
 
-  addDevice.mutate({
-    connectionId: connectionId,
-    domain: domain,
-    stage: stage,
-  });
+  
+  // const addDevice = api.device.add.useMutation();
+
+  // addDevice.mutate({
+  //   connectionId: connectionId,
+  //   domain: domain,
+  //   stage: stage,
+  // });
 
   console.log("connectionId", connectionId);
 
