@@ -1,21 +1,23 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { api } from "~/utils/api";
-import {
-  ApiGatewayManagementApiClient,
-  PostToConnectionCommand,
-} from "@aws-sdk/client-apigatewaymanagementapi";
-import axios from "axios";
+
 
 type ResponseData = {
   message: string;
 };
+
+interface Body {
+  connectionId: string;
+  domain: string;
+  stage: string;
+}
 
 export default function handler(
   req: NextApiRequest,
   res: NextApiResponse<ResponseData>,
 ) {
 
-  const { connectionId, domain, stage } = req.body;
+  const { connectionId, domain, stage } = req.body as Body;
 
   // const id = req.headers.connectionid as string;
   // if (id) {
