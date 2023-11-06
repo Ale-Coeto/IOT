@@ -30,9 +30,9 @@ export default async function handler(
   // }
 
   await deviceCaller.add({
-    connectionId: connectionId,
-    domain: domain,
-    stage: stage,
+    connectionId,
+    domain,
+    stage,
   });
   // const addDevice = api.device.add.useMutation();
 
