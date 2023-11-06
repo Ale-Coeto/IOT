@@ -6,8 +6,7 @@ import {
 
 type ResponseData = {
   message: string;
-  //   message_dos: string;
-  //   message_full: string;
+
 };
 
 export default async function handler(
@@ -24,10 +23,10 @@ export default async function handler(
     });
   }
   const apiGatewayClient = new ApiGatewayManagementApiClient({
-    // apiVersion: "2018-11-29",
-        endpoint: "https://vczqzgtci9.execute-api.us-east-1.amazonaws.com/production/"
-    // endpoint: "https://0dgey6d1uf.execute-api.us-east-1.amazonaws.com/develop",
+        endpoint: "https://vczqzgtci9.execute-api.us-east-1.amazonaws.com/production/",
+        region: "us-east-1",
   });
+
   const postToConnectionCommand = new PostToConnectionCommand({
     ConnectionId: connectionId,
     Data: JSON.stringify({
@@ -37,13 +36,9 @@ export default async function handler(
   });
 
   const result = await apiGatewayClient.send(postToConnectionCommand);
-  //   console.log("body", req.body);
-  //   console.log("query", req.query);
-  //   //   console.log("full", req);
-  //   console.log("full", req.headers);
+  
   res.status(200).json({
     message: JSON.stringify(result),
-    // message_dos: JSON.stringify(req.query),
-    // message_full: JSON.stringify(req),
+   
   });
 }

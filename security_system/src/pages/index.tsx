@@ -2,13 +2,15 @@ import { signIn, signOut, useSession } from "next-auth/react";
 import Head from "next/head";
 import Link from "next/link";
 import SendMessage from "~/components/sendmsg";
-
+import axios from "axios";
 import { api } from "~/utils/api";
 
 
 export default function Home() {
 
-
+  // const send = () => {
+  //   axios.post('http://localhost:3001/send_message', { action: "$connect", message: "hola" })
+  // }
 
   return (
     <>
@@ -18,8 +20,10 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className=" flex min-h-screen flex-col items-center justify-center ">
-
-        <SendMessage />
+        <button>
+          send
+        </button>
+        {/* <SendMessage /> */}
 
       </main>
     </>

@@ -1,4 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from "next";
+import { api } from "~/utils/api";
 import {
   ApiGatewayManagementApiClient,
   PostToConnectionCommand,
@@ -13,40 +14,29 @@ export default function handler(
   req: NextApiRequest,
   res: NextApiResponse<ResponseData>,
 ) {
-  //   console.log("body", req.body);
-  //   console.log("query", req.query);
-  //   console.log("full", req);
-  //   console.log("headers keys", Object.keys(req.headers));
-  // get connectionId from headers (instead of "connectionId" from headers)
-  const id = req.headers.connectionid as string;
-  if (id) {
-    console.log("connectionId", id);
-    void axios.post("/api/testSend", {
-      message: id.split(",")[0],
-      connectionId: id,
-    });
-  }
-  //   if (!id) {
-  //     res.status(400).json({
-  //       message: "No message provided",
-  //     });
-  //   }
-  //   const apiGatewayClient = new ApiGatewayManagementApiClient({
-  //     // apiVersion: "2018-11-29",
-  //     endpoint: "https://0dgey6d1uf.execute-api.us-east-1.amazonaws.com/develop",
-  //   });
-  //   const postToConnectionCommand = new PostToConnectionCommand({
-  //     ConnectionId: id,
-  //     Data: JSON.stringify({
-  //       action: "message",
-  //       content: id,
-  //     }),
-  //   });
 
-  //   const result = await apiGatewayClient.send(postToConnectionCommand);
+  const { connectionId, domain, stage } = req.body;
+
+  // const id = req.headers.connectionid as string;
+  // if (id) {
+  //   console.log("connectionId", id);
+  //   void axios.post("/api/testSend", {
+  //     message: id.split(",")[0],
+  //     connectionId: id,
+  //   });
+  // }
+  const addDevice = api.device.add.useMutation();
+
+  addDevice.mutate({
+    connectionId: connectionId,
+    domain: domain,
+    stage: stage,
+  });
+
+  console.log("connectionId", connectionId);
+
   res.status(200).json({
-    message: id ? JSON.stringify(id) : "no connectionId",
-    // message_dos: JSON.stringify(req.query),
-    // message_full: JSON.stringify(req),
+    message: connectionId ? JSON.stringify(connectionId) : "no connectionId",
+  
   });
 }
