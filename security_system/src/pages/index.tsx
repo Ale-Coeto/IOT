@@ -7,7 +7,11 @@ import { api } from "~/utils/api";
 
 
 export default function Home() {
+  const getData = api.data.getData.useQuery();
 
+  const handle = () => {
+    // getData.refetch();
+  }
   // const send = () => {
   //   axios.post('http://localhost:3001/send_message', { action: "$connect", message: "hola" })
   // }
@@ -20,7 +24,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className=" flex min-h-screen flex-col items-center justify-center ">
-        <button>
+        <button onClick={handle}>
           send
         </button>
         {/* <SendMessage /> */}

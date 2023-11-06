@@ -1,4 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from "next";
+import { deviceCaller } from "~/server/api/ApiCaller";
 import { api } from "~/utils/api";
 
 
@@ -12,7 +13,7 @@ interface Body {
   stage: string;
 }
 
-export default function handler(
+export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<ResponseData>,
 ) {
@@ -28,7 +29,11 @@ export default function handler(
   //   });
   // }
 
-  
+  await deviceCaller.add({
+    connectionId: connectionId,
+    domain: domain,
+    stage: stage,
+  });
   // const addDevice = api.device.add.useMutation();
 
   // addDevice.mutate({

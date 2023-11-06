@@ -1,3 +1,4 @@
+import axios from "axios";
 import { z } from "zod";
 
 import {
@@ -14,6 +15,22 @@ export const saveData = createTRPCRouter({
                 greeting: `Hello ${input.text}`,
             };
         }),
+
+    getData: publicProcedure.query(({ ctx }) => {
+        const fetchData = async () => {
+            try {
+                    const response = await axios.post("https://recognition-api-iota.vercel.app/getImg",{img: "test"});
+                    // const data = await response.json();
+                    console.log(response.data);
+                    return response.data as string;
+            } catch (error) {
+                console.log(error);
+                return error;
+            }
+            
+          }
+          return fetchData();
+    }),
 
     getAll: publicProcedure.query(({ ctx }) => {
         return ctx.db.example.findMany();
