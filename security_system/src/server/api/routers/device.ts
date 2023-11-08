@@ -18,11 +18,11 @@ export const deviceRouter = createTRPCRouter({
         )
         .mutation( async({ input, ctx }) => {
             try {
-                await ctx.db.device.deleteMany({
-                  where: {
-                    OR: [{ connectionId: input.connectionId }],
-                  },
-                });
+                // await ctx.db.device.deleteMany({
+                //   where: {
+                //     OR: [{ connectionId: input.connectionId }],
+                //   },
+                // });
                 await ctx.db.device.create({
                   data: {
                     connectionId: input.connectionId,

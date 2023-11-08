@@ -2,10 +2,11 @@ interface WidgetProps {
     title: string;
     value: string | number;
     icon?: string;
+    date: string
 }
 
-const Widget: React.FC<WidgetProps> = ({ title, value, icon }) => {
-
+const Widget: React.FC<WidgetProps> = ({ title, value, icon, date }) => {
+    
     return (
         <div className="bg-white rounded-lg shadow-md p-4">
             <h1 className="font-bold">
@@ -14,6 +15,9 @@ const Widget: React.FC<WidgetProps> = ({ title, value, icon }) => {
 
             <div className="text-gray-400">
                 {value}
+            </div>
+            <div className="text-neutral-500">
+                {date}
             </div>
         </div>
     )
