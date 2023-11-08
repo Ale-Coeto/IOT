@@ -78,6 +78,10 @@ const EditModal: React.FC<SaveProps> = ({ isOpen, id }) => {
         toast.success("Image edited successfully");
     }
 
+    const close = () => {
+        dialog.current?.close();
+    }
+
 
     return (
         <dialog ref={dialog}
@@ -100,7 +104,7 @@ const EditModal: React.FC<SaveProps> = ({ isOpen, id }) => {
 
 
 
-                <button onClick={() => dialog.current?.close} className='bg-gray-300 py-2 px-5 rounded-full text-white hover:bg-gray-200'>
+                <button onClick={close} className='bg-gray-300 py-2 px-5 rounded-full text-white hover:bg-gray-200'>
                     Cancel
                 </button>
 
@@ -114,7 +118,7 @@ const EditModal: React.FC<SaveProps> = ({ isOpen, id }) => {
 
 
             </div>
-            <button className="absolute p-2 right-3 top-3 text-neutral-800" onClick={() => dialog.current?.close()}>
+            <button className="absolute p-2 right-3 top-3 text-neutral-800" onClick={close}>
                 <AiOutlineCloseCircle className="text-2xl " />
             </button>
 

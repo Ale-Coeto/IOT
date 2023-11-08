@@ -1,6 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { deviceCaller } from "~/server/api/ApiCaller";
-import { api } from "~/utils/api";
 
 
 type ResponseData = {

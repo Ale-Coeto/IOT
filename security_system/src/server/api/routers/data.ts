@@ -16,7 +16,7 @@ export const saveData = createTRPCRouter({
             };
         }),
 
-    getData: publicProcedure.query(({ ctx }) => {
+    getData: publicProcedure.query(() => {
         const fetchData = async () => {
             try {
                     const response = await axios.post("https://recognition-api-iota.vercel.app/getImg",{img: "test"});

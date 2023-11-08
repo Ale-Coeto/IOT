@@ -15,9 +15,6 @@ interface ob {
 
 }
 
-interface AddImageProps {
-    image: string;
-}
 
 export const AddImage = () => {
 
@@ -27,7 +24,7 @@ export const AddImage = () => {
     const handleUpload = (result: CldUploadWidgetResults) => {
         setImage("");
         if (typeof result?.info !== 'string')
-            setImage(result?.info?.secure_url || "");
+            setImage(result?.info?.secure_url ?? "");
 
         console.log(image);
     }
@@ -51,7 +48,7 @@ export const AddImage = () => {
                     <AiOutlinePlus className='text-gray-700 text-xl' />
                 </div>
             </CldUploadButton>
-            {/* <Avatar image={userData?.image || 'Logo2.svg'} edit /> */}
+            {/* <Avatar image={userData?.image ?? 'Logo2.svg'} edit /> */}
 
             <AddModal isOpen={openModal} image={image} />
 

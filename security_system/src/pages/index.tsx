@@ -7,7 +7,7 @@ import { useRouter } from "next/navigation";
 import { BsHouseLock } from "react-icons/bs";
 
 export default function Home() {
-  const getData = api.data.getData.useQuery();
+  // const getData = api.data.getData.useQuery();
   const session = useSession();
   const router = useRouter();
 
@@ -30,7 +30,7 @@ export default function Home() {
         <BsHouseLock className="text-7xl mb-7" />
 
         <h1 className="text-xl font-medium pb-2">
-          Welcome to Davalos' Magic House
+          Welcome to Davalos&apos; Magic House
         </h1>
 
         <p className="text-gray-500 pb-8">

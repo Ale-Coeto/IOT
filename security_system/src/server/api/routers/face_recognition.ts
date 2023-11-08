@@ -5,9 +5,9 @@ import axios from "axios";
 export const FaceRecognitionRouter = createTRPCRouter({
     recognizeFace: protectedProcedure
         .input(z.object({ img: z.string(), images: z.array(z.string()) }))
-        .mutation(async ({ input }) => {
+        .mutation(({ input }) => {
             try {
-                let json = JSON.stringify(input);
+                const json = JSON.stringify(input);
                 console.log(json);
                 // const response = await axios.post("https://recognition-api-iota.vercel.app/getImg",{img: input});
             } catch (error) {
@@ -15,7 +15,7 @@ export const FaceRecognitionRouter = createTRPCRouter({
             }
         }),
 
-        getData: publicProcedure.query(({ ctx }) => {
+        getData: publicProcedure.query(() => {
             const fetchData = async () => {
                 try {
                         const response = await axios.post("https://recognition-api-iota.vercel.app/getImg",{img: "test"});

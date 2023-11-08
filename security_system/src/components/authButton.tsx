@@ -1,5 +1,4 @@
 import { signIn, signOut, useSession } from "next-auth/react";
-import { api } from "~/utils/api";
 
 export const AuthButton = () => {
     const { data: sessionData } = useSession();

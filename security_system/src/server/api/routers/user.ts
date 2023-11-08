@@ -3,7 +3,6 @@ import { z } from "zod";
 import {
   createTRPCRouter,
   protectedProcedure,
-  publicProcedure,
 } from "~/server/api/trpc";
 
 export const userRouter = createTRPCRouter({
@@ -40,7 +39,7 @@ export const userRouter = createTRPCRouter({
     deleteImage: protectedProcedure
         .input(z.object({ id: z.string() }))
         .mutation(async ({ ctx, input }) => {
-            const id = ctx.session.user.id;
+            // const id = ctx.session.user.id;
             return await ctx.db.image.delete({
                 where: {
                     id: input.id
@@ -51,7 +50,7 @@ export const userRouter = createTRPCRouter({
     editImage: protectedProcedure
         .input(z.object({ id: z.string(), name: z.string() }))
         .mutation(async ({ ctx, input }) => {
-            const id = ctx.session.user.id;
+            // const id = ctx.session.user.id;
             return await ctx.db.image.update({
                 where: {
                     id: input.id

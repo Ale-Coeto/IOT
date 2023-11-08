@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import Widget from "~/components/dashboard/widget";
-import * as io from 'socket.io-client'
 import { AuthButton } from "~/components/authButton";
 import { api } from "~/utils/api";
 import { AddImage } from "~/components/dashboard/addImg";
