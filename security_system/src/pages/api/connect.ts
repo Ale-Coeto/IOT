@@ -10,7 +10,7 @@ interface Body {
   connectionId: string;
   domain: string;
   stage: string;
-  params: string
+  // params: string
 }
 
 export default async function handler(
@@ -18,10 +18,14 @@ export default async function handler(
   res: NextApiResponse<ResponseData>,
 ) {
 
-  const connectionId = req.headers.connectionid as string;
-  const domain = req.headers.domain as string;
-  const stage = req.headers.stage as string;
-  // const { connectionId, domain, stage } = req.body as Body;
+  // const connectionId = req.body.connectionid as string;
+  // const domain = req.headers.domain as string;
+  // const stage = req.headers.stage as string;
+
+  // const domain = "vczqzgtci9.execute-api.us-east-1.amazonaws.com";
+  // const stage = "production";
+
+  const { connectionId, domain, stage } = req.body as Body;
 
   // const id = req.headers.connectionid as string;
   // if (id) {
