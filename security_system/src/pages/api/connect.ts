@@ -44,6 +44,7 @@ export default async function handler(
   console.log("connectionId", connectionId);
 
   res.status(200).json({
+    
     message: connectionId ? JSON.stringify(connectionId) : "no connectionId",
   
   });
