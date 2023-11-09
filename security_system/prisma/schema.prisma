@@ -31,12 +31,12 @@ model Account {
   type              String
   provider          String
   providerAccountId String
-  refresh_token     String?  @db.Text
-  access_token      String?  @db.Text
+  refresh_token     String? @db.Text
+  access_token      String? @db.Text
   expires_at        Int?
   token_type        String?
   scope             String?
-  id_token          String?  @db.Text
+  id_token          String? @db.Text
   session_state     String?
   user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
 
@@ -88,8 +88,14 @@ model Log {
   temp Int
 }
 
+model ImageLog {
+  id        Int     @id @default(autoincrement())
+  image     String  @db.Text
+  processed Boolean
+}
+
 model Device {
   connectionId String @id
   stage        String
-  domain         String
+  domain       String
 }

@@ -38,5 +38,16 @@ export const deviceRouter = createTRPCRouter({
               return false;
             }),
 
+    removeDevice: publicProcedure
+    .input(z.object({ connectionId: z.string() }))
+    .mutation(async ({ ctx, input }) => {
+      // simulate a slow db call
+      await ctx.db.device.delete({
+        where: {
+          connectionId: input.connectionId,
+        },
+      });
+    }),
+
 
 });

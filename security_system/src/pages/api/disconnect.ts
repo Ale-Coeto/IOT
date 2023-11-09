@@ -1,22 +1,42 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 
+import { deviceCaller } from "~/server/api/ApiCaller";
+
 type ResponseData = {
   message: string;
-  //   message_dos: string;
-  //   message_full: string;
 };
 
-export default function handler(
+interface Body {
+  connectionId: string;
+}
+
+export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<ResponseData>,
 ) {
-  console.log("body", req.body);
-  console.log("query", req.query);
-  //   console.log("full", req);
-  console.log("full", req.headers);
-  res.status(200).json({
-    message: JSON.stringify(req.body),
-    // message_dos: JSON.stringify(req.query),
-    // message_full: JSON.stringify(req),
-  });
+  // Debug
+  // console.log("body", req.body);
+  // console.log("query", req.query);
+
+  const { connectionId } = req.body as Body;
+
+  if (!connectionId) {
+    res.status(400).json({
+      message: "Error: Missing connection id",
+    });
+  } else {
+    try {
+      await deviceCaller.removeDevice({
+        connectionId: connectionId,
+      });
+    } catch (error) {
+      console.log("error: ", error);
+      res.status(500).json({
+        message: "Error: " + JSON.stringify(error),
+      });
+    }
+    res.status(200).json({
+      message: "Device disconnected",
+    });
+  }
 }

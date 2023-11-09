@@ -3,6 +3,23 @@ import { createTRPCRouter, protectedProcedure, publicProcedure } from "../trpc";
 import axios from "axios";
 
 export const FaceRecognitionRouter = createTRPCRouter({
+
+    addImage: publicProcedure
+        .input(z.string())
+        .mutation(async ({ input, ctx }) => {
+            try {
+                await ctx.db.imageLog.create({
+                    data: {
+                        image: input,
+                        processed: false
+                    }
+                })
+            } catch (error) {
+                console.log(error);
+                return error;
+            }
+        }),
+
     recognizeFace: protectedProcedure
         .input(z.object({ img: z.string(), images: z.array(z.string()) }))
         .mutation(({ input }) => {
@@ -15,20 +32,20 @@ export const FaceRecognitionRouter = createTRPCRouter({
             }
         }),
 
-        getData: publicProcedure.query(() => {
-            const fetchData = async () => {
-                try {
-                        const response = await axios.post("https://recognition-api-iota.vercel.app/getImg",{img: "test"});
-                        // const data = await response.json();
-                        console.log(response.data);
-                        return response.data as string;
-                } catch (error) {
-                    console.log(error);
-                    return error;
-                }
-                
-              }
-              return fetchData();
-        }),
+    getData: publicProcedure.query(() => {
+        const fetchData = async () => {
+            try {
+                    const response = await axios.post("https://recognition-api-iota.vercel.app/getImg",{img: "test"});
+                    // const data = await response.json();
+                    console.log(response.data);
+                    return response.data as string;
+            } catch (error) {
+                console.log(error);
+                return error;
+            }
+            
+            }
+            return fetchData();
+    }),
     
 })
