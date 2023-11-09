@@ -10,6 +10,7 @@ interface Body {
   connectionId: string;
   domain: string;
   stage: string;
+  params: string
 }
 
 export default async function handler(
@@ -44,7 +45,7 @@ export default async function handler(
   console.log("connectionId", connectionId);
 
   res.status(200).json({
-    
+
     message: connectionId ? JSON.stringify(connectionId) : "no connectionId",
   
   });
