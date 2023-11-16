@@ -40,16 +40,16 @@ export const saveData = createTRPCRouter({
         return "you can now see this secret message!";
     }),
 
-    sendData: publicProcedure
-        .input(z.object({ temp: z.number() }))
-        .mutation(({ input, ctx }) => {
-            return (
-            ctx.db.log.create({
-                data: {
-                    temp: input.temp,
-                },
-            })
-            )
-        })
+    // sendData: publicProcedure
+    //     .input(z.object({ temp: z.number() }))
+    //     .mutation(({ input, ctx }) => {
+    //         return (
+    //         ctx.db.log.create({
+    //             data: {
+    //                 temp: input.temp,
+    //             },
+    //         })
+    //         )
+    //     })
 
 });

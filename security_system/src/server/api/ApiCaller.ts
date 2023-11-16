@@ -17,3 +17,5 @@ const systemContext = {
 
 export const deviceCaller = appRouter.device.createCaller(systemContext);
 export const faceRecognitionCaller = appRouter.face_recognition.createCaller(systemContext);
+export const sendDataCaller = appRouter.sendData.createCaller(systemContext);
+export const sensorsCaller = appRouter.sensors.createCaller(systemContext);

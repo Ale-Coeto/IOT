@@ -6,10 +6,6 @@ type ResponseData = {
   message: string;
 };
 
-interface Body {
-  connectionId: string;
-}
-
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<ResponseData>,
@@ -18,13 +14,15 @@ export default async function handler(
   // console.log("body", req.body);
   // console.log("query", req.query);
 
-  const { connectionId } = req.body as Body;
+  const connectionId = req.body.connectionId as string;
 
-  if (!connectionId) {
+  if (!connectionId || connectionId === "undefined") {
     res.status(400).json({
       message: "Error: Missing connection id",
     });
-  } else {
+  } 
+
+  else {
     try {
       await deviceCaller.removeDevice({
         connectionId: connectionId,

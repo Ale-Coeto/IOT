@@ -19,12 +19,13 @@ export default async function handler(
   // console.log("query", req.query);
 
   const { data } = req.body as { data: string };
+
   const input = z.string().parse(data);
   try {
     if (typeof data === "string") {
-    await faceRecognitionCaller.addImage(
-        input
-    )
+    // await faceRecognitionCaller.addImage(
+    //     input
+    // )
     // const type = DeviceDataType.parse(dataType);
 
     // if (type === "temperature") {

@@ -1,7 +1,7 @@
 interface WidgetProps {
     title: string;
     value: string | number;
-    date: string
+    date: string;
 }
 
 const Widget: React.FC<WidgetProps> = ({ title, value, date }) => {

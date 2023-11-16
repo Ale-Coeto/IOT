@@ -85,17 +85,35 @@ model VerificationToken {
 
 model Log {
   id   Int @id @default(autoincrement())
-  temp Int
+  name String
+  date String
+  time String
+  userId String
+  createdAt DateTime @default(now())
 }
 
 model ImageLog {
   id        Int     @id @default(autoincrement())
   image     String  @db.Text
+  imageId   Int
+  chunk     Int
   processed Boolean
+  chunkSize Int
+  createdAt DateTime @default(now())
 }
 
 model Device {
   connectionId String @id
+  name         String
   stage        String
   domain       String
+}
+
+model SensorLog {
+  id         String @id @default(cuid())
+  type       String
+  value      String
+  userId    String
+  createdAt  DateTime @default(now())
+
 }

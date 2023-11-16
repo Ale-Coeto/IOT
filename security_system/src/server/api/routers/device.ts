@@ -14,6 +14,7 @@ export const deviceRouter = createTRPCRouter({
                 connectionId: z.string(),
                 domain: z.string(),
                 stage: z.string(),
+                name: z.string(),
               }),
         )
         .mutation( async({ input, ctx }) => {
@@ -25,6 +26,7 @@ export const deviceRouter = createTRPCRouter({
                 // });
                 await ctx.db.device.create({
                   data: {
+                    name: input.name,
                     connectionId: input.connectionId,
                     domain: input.domain,
                     stage: input.stage,
@@ -41,12 +43,18 @@ export const deviceRouter = createTRPCRouter({
     removeDevice: publicProcedure
     .input(z.object({ connectionId: z.string() }))
     .mutation(async ({ ctx, input }) => {
-      // simulate a slow db call
-      await ctx.db.device.delete({
+      
+      await ctx.db.device.deleteMany({
         where: {
           connectionId: input.connectionId,
-        },
+        }
       });
+    }),
+
+    getDevices: publicProcedure
+    .query(async ({ ctx }) => {
+      const devices = await ctx.db.device.findMany();
+      return devices;
     }),
 
 

@@ -6,39 +6,37 @@ import {
 
 type ResponseData = {
   message: string;
-
 };
+
 
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<ResponseData>,
 ) {
-  const { message, connectionId } = req.body as {
-    message: string;
-    connectionId: string;
-  };
-  if (!message) {
-    res.status(400).json({
-      message: "No message provided",
-    });
-  }
-  const apiGatewayClient = new ApiGatewayManagementApiClient({
-        endpoint: "https://vczqzgtci9.execute-api.us-east-1.amazonaws.com/production/",
-        region: "us-east-1",
-  });
+  const { message, connectionId, stage, domain } = req.body;
+  console.log(req.body);
 
-  const postToConnectionCommand = new PostToConnectionCommand({
+  const callbackUrl = `https://${domain}/${stage}`;
+  const client = new ApiGatewayManagementApiClient({ endpoint: callbackUrl });
+
+  const requestParams = {
     ConnectionId: connectionId,
     Data: JSON.stringify({
       action: "message",
       content: message,
     }),
-  });
+  };
 
-  const result = await apiGatewayClient.send(postToConnectionCommand);
-  
+  const command = new PostToConnectionCommand(requestParams);
+
+  if (!message) {
+    res.status(400).json({
+      message: "No message provided",
+    });
+  }
+
+  const result = await client.send(command);
   res.status(200).json({
     message: JSON.stringify(result),
-   
   });
 }

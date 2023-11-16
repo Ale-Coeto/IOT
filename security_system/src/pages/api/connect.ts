@@ -6,12 +6,6 @@ type ResponseData = {
   message: string;
 };
 
-interface Body {
-  connectionId: string;
-  domain: string;
-  stage: string;
-  // params: string
-}
 
 export default async function handler(
   req: NextApiRequest,
@@ -23,10 +17,15 @@ export default async function handler(
   // const stage = req.headers.stage as string;
 
   // const domain = "vczqzgtci9.execute-api.us-east-1.amazonaws.com";
-  // const stage = "production";
+  // const stage = "test";
 
-  const { connectionId, domain, stage } = req.body as Body;
-
+  // console.log("body", req.body);
+  // const { connectionId, domain, stage } = req.body as Body;
+  const connectionId = req.body.connectionId as string;
+  
+  const domain = req.body.domain as string;
+  const stage = req.body.stage as string;
+  
   // const id = req.headers.connectionid as string;
   // if (id) {
   //   console.log("connectionId", id);
@@ -35,13 +34,25 @@ export default async function handler(
   //     connectionId: id,
   //   });
   // }
+  // console.log(req.body);
+  if (!connectionId) {
+    res.status(400).json({
+      message: "Error: Missing connection id",
+    });
+    return;
+  }
 
+  if (connectionId !== "undefined") {
   await deviceCaller.add({
+    name: "test",
     connectionId: connectionId,
     domain: domain,
     stage: stage,
   });
+  console.log("added")
+}
   // const addDevice = api.device.add.useMutation();
+  console.log("connectionId", connectionId);
 
   // addDevice.mutate({
   //   connectionId: connectionId,
@@ -49,11 +60,12 @@ export default async function handler(
   //   stage: stage,
   // });
 
-  console.log("connectionId", connectionId);
 
   res.status(200).json({
 
-    message: connectionId ? JSON.stringify(connectionId) : "no connectionId",
-  
+    message: JSON.stringify(req.body)
+
   });
 }
+
+//https://iot-security-system.vercel.app/api/connect
