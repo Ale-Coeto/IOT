@@ -1,6 +1,5 @@
 import { useSession } from "next-auth/react";
 import Head from "next/head";
-import { api } from "~/utils/api";
 import { AuthButton } from "~/components/authButton";
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";

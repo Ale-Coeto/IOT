@@ -14,6 +14,13 @@ export default async function handler(
   // console.log("body", req.body);
   // console.log("query", req.query);
 
+  if (req.body === undefined) {
+    res.status(400).json({
+      message: "Error: Missing body",
+    });
+    return;
+  }
+  
   const connectionId = req.body.connectionId as string;
 
   if (!connectionId || connectionId === "undefined") {

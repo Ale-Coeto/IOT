@@ -104,18 +104,21 @@ export const FaceRecognitionRouter = createTRPCRouter({
                 }
             }
 
-            const fetchData = async (img: String, images: userImages[]) => {
+            const fetchData = async (img: string, images: userImages[]) => {
                 console.log("fetching data")
                 try {
-                    // const response = await axios.post("https://recognition-api-iota.vercel.app/getImg",{
-                    // const response = await axios.post("https://recognition-api-iota.vercel.app/recognize", {
+        
                     const response = await axios.post("http://10.22.227.225:8000/recognize", {
                         img: img,
                         images: images
                     });
                     // const data = await response.json();
-                    console.log(response.data.result);
+                    // console.log(response.data.result);
                     return response.data.result as string;
+                    // if (response.data.result)
+                    //     return response.data.result as string;
+                    // else return response.data as string;
+
                 } catch (error) {
                     console.log(error);
                     return error;

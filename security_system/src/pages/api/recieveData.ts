@@ -1,6 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 
-import { faceRecognitionCaller } from "~/server/api/ApiCaller";
 
 // import { DeviceDataType } from "~/zod/types";
 import { z } from "zod";
@@ -9,7 +8,7 @@ type ResponseData = {
   message: string;
 };
 
-export default async function handler(
+export default function handler(
   req: NextApiRequest,
   res: NextApiResponse<ResponseData>,
 ) {
@@ -20,7 +19,7 @@ export default async function handler(
 
   const { data } = req.body as { data: string };
 
-  const input = z.string().parse(data);
+  // const input = z.string().parse(data);
   try {
     if (typeof data === "string") {
     // await faceRecognitionCaller.addImage(

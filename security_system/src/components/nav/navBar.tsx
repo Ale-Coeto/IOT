@@ -2,7 +2,6 @@ import { BsHouseLock } from "react-icons/bs";
 import { AuthButton } from "../authButton";
 import { useRouter, usePathname } from "next/navigation";
 import NavElement from "./navElement";
-import { use, useState } from "react";
 
 const NavBar = () => {
     const router = useRouter();

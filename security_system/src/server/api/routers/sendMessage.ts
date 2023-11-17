@@ -8,7 +8,6 @@ import {
 
 import {
   createTRPCRouter,
-  protectedProcedure,
   publicProcedure,
 } from "~/server/api/trpc";
 
@@ -35,7 +34,7 @@ export const sendRouter = createTRPCRouter({
         });
 
 
-        const jsonObject = JSON.parse(input.data);
+        const jsonObject:JSON = JSON.parse(input.data);
         console.log(jsonObject);
 
         const requestParams = {

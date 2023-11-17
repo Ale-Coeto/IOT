@@ -1,6 +1,4 @@
 import { NextApiResponse } from "next";
-import { NextResponse } from "next/server";
-import { z } from "zod";
 import { sensorsCaller } from "~/server/api/ApiCaller";
 
 type ResponseData = {
@@ -16,13 +14,19 @@ type sensorData = {
 export default async function POST(req: Request, res: NextApiResponse<ResponseData>) {
     try {
 
-        const body = await req.body as unknown as sensorData;
+        const body = req.body as unknown as sensorData;
 
         if (body !== undefined) {
             console.log(body);
             if (!body.userId)
                 body.userId = "clp01vc84000098nfj1dxjho1";
-            await sensorsCaller.addSensorLog({ type: body.type, value: body.value, userId: body.userId });
+            await sensorsCaller.addSensorLog({ type: body.type, value: body.value, userId: body.userId })
+            .then((response) => {
+                console.log(response);
+            })
+            .catch((error) => {
+                console.log(error);
+            })
         }
 
 
