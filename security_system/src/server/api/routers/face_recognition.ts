@@ -110,7 +110,7 @@ export const FaceRecognitionRouter = createTRPCRouter({
                 try {
         
                     
-                    const response = await axios.post("http://127.0.0.1:8000/recognize", {
+                    const response = await axios.post("https://ale-api.roborregos.com/recognize", {
                         img: img,
                         images: images
                     });
