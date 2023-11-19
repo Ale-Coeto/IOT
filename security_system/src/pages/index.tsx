@@ -29,7 +29,7 @@ export default function Home() {
         <BsHouseLock className="text-7xl mb-7" />
 
         <h1 className="text-xl font-medium pb-2">
-          Welcome to Davalos&apos; Magic House
+          Safe Space
         </h1>
 
         <p className="text-gray-500 pb-8">
