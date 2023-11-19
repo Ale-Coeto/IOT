@@ -2,7 +2,7 @@ import type { NextApiRequest, NextApiResponse } from "next";
 
 import { faceRecognitionCaller } from "~/server/api/ApiCaller";
 import { sendDataCaller } from "~/server/api/ApiCaller";
-
+import { deviceCaller } from "~/server/api/ApiCaller";
 // import { DeviceDataType } from "~/zod/types";
 import { z } from "zod";
 
@@ -29,17 +29,31 @@ export default async function handler(
 
   try {
     if (typeof data === "string") {
+
+    if (chunkNum === 0) {
+      await faceRecognitionCaller.deletePrev({id:imgId});
+    }
+
     await faceRecognitionCaller.addImage(
         { image: img, id: imgId, chunk: chunkNum, chunkSize: chunkS }
     )
+    
     
     if (chunkNum === chunkS) {
       const result = await faceRecognitionCaller.recognize({ id: imgId, userId: user });
       // console.log(result)
 
-      if (result !== "None" && result !== "Unknown" && result !== "Error") {
-        await sendDataCaller.send({ connectionId: "Of7CPf_zIAMCI8A=", data: '{"action":"message", "content":"hola"}' });
+      const device = await deviceCaller.getDevices();
+
+      if (device.length > 0 && device[0]) {
+        if (typeof result === "string" && result !== "None" && result !== "Unknown" && result !== "Error") {
+        await sendDataCaller.send({ connectionId: device[0].connectionId, data: `{"action":"abrir", "content":"${result}"}` });
+        } else {
+          await sendDataCaller.send({ connectionId: device[0].connectionId, data: `{"action":"cerrar", "content":"Unknown"}` });
+        }
+        
       }
+
         
     }
 
@@ -48,10 +62,12 @@ export default async function handler(
     res.status(200).json({
       message: "Data recieved successfully",
     });
+
   } catch (error) {
     console.log("error: ", error);
     res.status(400).json({
       message: "Error: " + JSON.stringify(error),
     });
   }
+
   }

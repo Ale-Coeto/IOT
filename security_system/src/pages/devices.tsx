@@ -14,7 +14,7 @@ const Devices = () => {
                 Devices avaliable
             </div>
 
-            <div className="grid grid-cols-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 ">
                 {devices?.map((device, key) => (
                     <Device key={key} name={device.name} connectionId={device.connectionId} />
                 ))}

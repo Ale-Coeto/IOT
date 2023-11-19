@@ -88,6 +88,7 @@ model Log {
   name String
   date String
   time String
+  image String @db.Text
   userId String
   createdAt DateTime @default(now())
 }
@@ -116,4 +117,11 @@ model SensorLog {
   userId    String
   createdAt  DateTime @default(now())
 
+}
+
+model Opened {
+  id         String @id @default(cuid())
+  userId    String
+  value     String
+  createdAt  DateTime @default(now())
 }

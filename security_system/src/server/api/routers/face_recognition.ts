@@ -63,6 +63,7 @@ export const FaceRecognitionRouter = createTRPCRouter({
                     //quitar b' al inicio y el \\n al final
                     const cropped = img.substring(2, img.length - 3);
                     console.log(cropped);
+                    
                     return cropped;
 
                     // const img = images.map((image) => {
@@ -108,7 +109,8 @@ export const FaceRecognitionRouter = createTRPCRouter({
                 console.log("fetching data")
                 try {
         
-                    const response = await axios.post("http://10.22.227.225:8000/recognize", {
+                    
+                    const response = await axios.post("http://127.0.0.1:8000/recognize", {
                         img: img,
                         images: images
                     });
@@ -144,6 +146,7 @@ export const FaceRecognitionRouter = createTRPCRouter({
                     name: resultName,
                     date: date,
                     time: time,
+                    image: imgResult,
                     userId: input.userId
                 }
             })
@@ -167,6 +170,32 @@ export const FaceRecognitionRouter = createTRPCRouter({
                         createdAt: "desc"
                     }
                 })
+            }),
+
+        deleteLog: publicProcedure
+            .input(z.object({id: z.number()}))
+            .mutation(async ({ ctx, input }) => {
+
+                await ctx.db.log.deleteMany({
+                    where: {
+                        id: input.id
+                    }
+                });
+                return true;
+            }),
+
+       
+        
+        deletePrev: publicProcedure
+            .input(z.object({id: z.number()}))
+            .mutation(async ({ ctx, input }) => {
+
+                await ctx.db.imageLog.deleteMany({
+                    where: {
+                        imageId: input.id
+                    }
+                });
+                return true;
             })
 
 })

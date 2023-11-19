@@ -24,7 +24,7 @@ export const deviceRouter = createTRPCRouter({
                 //     OR: [{ connectionId: input.connectionId }],
                 //   },
                 // });
-                await ctx.db.device.create({
+                const newDevice = await ctx.db.device.create({
                   data: {
                     name: input.name,
                     connectionId: input.connectionId,
@@ -32,6 +32,15 @@ export const deviceRouter = createTRPCRouter({
                     stage: input.stage,
                   },
                 });
+
+                await ctx.db.device.deleteMany({
+                  where: {
+                    NOT: {
+                      connectionId: newDevice.connectionId,
+                    },
+                  },
+                });
+                
                 return true;
               } catch (error) {
                 console.log("error: ", error);

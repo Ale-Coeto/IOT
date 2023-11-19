@@ -35,6 +35,29 @@ export const sensorsRouter = createTRPCRouter({
                 createdAt: true
             }
         })
+    }),
+
+    addOpened: publicProcedure
+    .input(z.object({userId: z.string(), value: z.string()}))
+    .mutation(async ({ ctx, input }) => {
+        const newLog = await ctx.db.opened.create({
+            data: {
+                userId: input.userId,
+                value: input.value
+            }
+        })
+
+
+        await ctx.db.opened.deleteMany({
+            where: {
+                NOT: {
+                    id: newLog.id
+                }
+            }
+        })
+
+        console.log(newLog)
+        return newLog;
     })
 
 });
