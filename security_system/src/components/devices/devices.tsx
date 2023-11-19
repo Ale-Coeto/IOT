@@ -19,10 +19,10 @@ const Device: React.FC<DeviceProps> = ({ connectionId, name }) => {
     }
 
     return (
-        <div className="bg-white p-4 rounded-md shadow-md relative hover:-translate-y-2" >
-            <div className="bg-green-400 h-4 w-4 absolute right-4 top-4 rounded-full shadow-inner " />
+        <div className="z-10 bg-white p-4 rounded-md shadow-md relative hover:-translate-y-2" >
+            <div className="z-10 bg-green-400 h-4 w-4 absolute right-4 top-4 rounded-full shadow-inner " />
 
-            <div className="font-bold text-neutral-800 pb-3">
+            <div className="z-10 font-bold text-neutral-800 pb-3">
                 NodeMCU
             </div>
             <div className="flex flex-row gap-2">

@@ -12,7 +12,7 @@ const Access = () => {
     }, [images?.images?.images])
 
     return (
-        <div className="w-full h-screen bg-gray-100 p-8">
+        <div className="w-full h-screen bg-gray-100 p-8 pt-14">
             <NavBar />
             <h1 className="text-xl font-bold mb-5">Access</h1>
 
@@ -22,7 +22,7 @@ const Access = () => {
                     <div className="text-gray-500 mb-4">
                         People who have access to the house
                     </div>
-                    <div className="flex flex-row items-center gap-5 h-72">
+                    <div className="flex flex-col md:flex-row items-center gap-5 h-72">
                         {images?.images?.images.map((image, key) => (
                             <UserImage key={key} image={image.url} name={image.name} id={image.id} />
                         ))}

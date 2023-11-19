@@ -52,7 +52,7 @@ const Dashboard = () => {
     return (
         <>
             <Toaster />
-            <div className="w-full h-full md:h-screen bg-gray-100 p-8">
+            <div className="w-full h-full md:h-screen bg-gray-100 p-8 pt-14">
 
                 <NavBar />
                 <h1 className="text-xl font-bold mb-7">Dashboard</h1>

@@ -3,7 +3,13 @@ import { AuthButton } from "../authButton";
 import { useRouter, usePathname } from "next/navigation";
 import NavElement from "./navElement";
 
-const NavDesktop = () => {
+interface route {
+    title: string;
+    route: string;
+    path: string; 
+}
+
+const NavDesktop = ({routes}:{routes:route[]}) => {
     const router = useRouter();
     const path = usePathname();
 

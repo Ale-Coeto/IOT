@@ -16,7 +16,7 @@ export const UserImage: React.FC<AddImageProps> = ({ name, image, id }) => {
     return (
         <>
             <EditModal isOpen={openModal} id={id} />
-            <div className='flex flex-col items-center h-72'>
+            <div className='flex flex-col items-center h-40 md:h-72'>
 
                 <div onClick={() => setOpenModal(!openModal)} className="rounded-full border-4 drop-shadow-lg border-white h-56 aspect-square hover:-translate-y-3">
                     <Image src={image} alt={name} fill className='rounded-full object-cover aspect-square ' />
@@ -86,7 +86,7 @@ const EditModal: React.FC<SaveProps> = ({ isOpen, id }) => {
     return (
         <dialog ref={dialog}
             className={
-                " w-1/3 fixed right-9 rounded-lg bg-gray-100 p-5 shadow-lg shadow-emerald-300/30 backdrop:bg-slate-900 backdrop:opacity-40 "
+                "w-auto md:w-1/3 fixed right-9 rounded-lg bg-gray-100 p-5 shadow-lg shadow-emerald-300/30 backdrop:bg-slate-900 backdrop:opacity-40 "
             }
         >
             <div className='text-neutral-800 mb-4 pl-2'>

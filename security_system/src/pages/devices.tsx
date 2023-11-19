@@ -6,7 +6,7 @@ const Devices = () => {
     const devices = api.device.getDevices.useQuery().data;
 
     return (
-        <div className="w-full h-screen bg-gray-100 p-8">
+        <div className="w-full h-screen bg-gray-100 p-8 z-20 pt-14">
             <NavBar />
             <h1 className="text-xl font-bold mb-5">Devices</h1>
 

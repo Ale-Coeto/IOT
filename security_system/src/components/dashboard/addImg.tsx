@@ -95,10 +95,10 @@ const AddModal: React.FC<SaveProps> = ({ isOpen, image }) => {
     return (
         <dialog ref={dialog}
             className={
-                " w-1/2 fixed right-9 rounded-lg bg-gray-100 p-5 shadow-lg shadow-emerald-300/30 backdrop:bg-slate-900 backdrop:opacity-40 "
+                "w-auto md:w-1/2 fixed right-9 rounded-lg bg-gray-100 p-5 shadow-lg shadow-emerald-300/30 backdrop:bg-slate-900 backdrop:opacity-40 "
             }
         >
-            <div className='flex p-2 w-full'>
+            <div className='flex flex-col md:flex-row p-2 w-full'>
 
                 <img src={image} alt="img" className="h-64" />
 
@@ -109,7 +109,7 @@ const AddModal: React.FC<SaveProps> = ({ isOpen, image }) => {
                         </div>
                         <input type="text" className=" rounded-md p-1 ring-1 ring-inset ring-emerald-400 focus:outline-0 text-gray-600" onChange={(e) => setName(e.target.value)} />
                     </div>
-                    <div className='flex flex-row justify-between items-center'>
+                    <div className='flex flex-col md:flex-row justify-between items-center'>
                         <div className='text-gray-400'>
                             Make sure the face of the person is clear
                         </div>

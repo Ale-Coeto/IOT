@@ -24,7 +24,7 @@ const Logs = () => {
     return (
         <>
             <Toaster />
-            <div className="w-full h-screen bg-gray-100 p-8">
+            <div className="w-full h-screen bg-gray-100 p-8 pt-14">
                 <NavBar />
                 <h1 className="text-xl font-bold mb-5">Logs</h1>
 
@@ -61,7 +61,7 @@ const Logs = () => {
                     </table>
                 </div>
             </div>
-            <LogModal isOpen={openModal} image={img} name={name} id={id}/>
+            <LogModal isOpen={openModal} image={img} name={name} id={id} />
         </>
     );
 }
@@ -92,25 +92,25 @@ export const LogModal: React.FC<SaveProps> = ({ isOpen, image, name, id }) => {
     }, [isOpen]);
 
     const handleClick = () => {
-            try {
-                deleteImage.mutate({ id: id });
-                dialog.current?.close();
-            } catch (error) {
-                toast.error("Error deleting log");
-                dialog.current?.close();
-            }
-    
-            toast.success("Log deleted successfully");
+        try {
+            deleteImage.mutate({ id: id });
+            dialog.current?.close();
+        } catch (error) {
+            toast.error("Error deleting log");
+            dialog.current?.close();
+        }
+
+        toast.success("Log deleted successfully");
     }
 
 
     return (
         <dialog ref={dialog}
             className={
-                " w-1/2 fixed right-9 rounded-lg bg-gray-100 p-5 shadow-lg shadow-emerald-300/30 backdrop:bg-slate-900 backdrop:opacity-40 "
+                "w-auto md:w-1/2 fixed right-9 rounded-lg bg-gray-100 p-5 shadow-lg shadow-emerald-300/30 backdrop:bg-slate-900 backdrop:opacity-40 "
             }
         >
-            <div className='flex p-2 w-full'>
+            <div className='flex flex-col md:flex-row p-2 w-full'>
 
                 <img src={`data:image/jpeg;base64,${image}`} />
 
@@ -124,11 +124,11 @@ export const LogModal: React.FC<SaveProps> = ({ isOpen, image, name, id }) => {
                         </div>
                     </div>
 
-                        <div>
-                            <button onClick={handleClick} className='bg-emerald-300 py-2 px-5 rounded-full text-white hover:bg-emerald-200'>
-                                Delete
-                            </button>
-                        </div>
+                    <div>
+                        <button onClick={handleClick} className='bg-emerald-300 py-2 px-5 rounded-full text-white hover:bg-emerald-200'>
+                            Delete
+                        </button>
+                    </div>
                 </div>
 
             </div>
