@@ -20,13 +20,11 @@ export default async function POST(req: Request, res: NextApiResponse<ResponseDa
             console.log(body);
             if (!body.userId)
                 body.userId = "clp01vc84000098nfj1dxjho1";
-            await sensorsCaller.addSensorLog({ type: body.type, value: body.value, userId: body.userId })
-            .then((response) => {
-                console.log(response);
-            })
-            .catch((error) => {
-                console.log(error);
-            })
+            
+            const res = await sensorsCaller.addSensorLog({ type: body.type, value: body.value, userId: body.userId })
+
+
+            await sensorsCaller.delete({ id : res.id, type: body.type })
         }
 
 

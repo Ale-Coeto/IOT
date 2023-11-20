@@ -36,15 +36,23 @@ const Dashboard = () => {
     }, [session?.status, router]);
 
     const id = session.data?.user.id ?? "";
+
     const temp = api.sensors.getSensorLogs.useQuery({ userId: id, type: "temperature" }).data;
     const tempDate = temp?.createdAt ?? new Date("2000/1/1");
 
     const gas = api.sensors.getSensorLogs.useQuery({ userId: id, type: "gas" }).data;
     const gasDate = gas?.createdAt ?? new Date("2000/1/1, 00:00:00");
 
+    const hum = api.sensors.getSensorLogs.useQuery({ userId: id, type: "hum" }).data;
+    const humDate = hum?.createdAt ?? new Date("2000/1/1, 00:00:00");
+
+    const luz = api.sensors.getSensorLogs.useQuery({ userId: id, type: "luz" }).data;
+    const luzDate = luz?.createdAt ?? new Date("2000/1/1, 00:00:00");
+
     const widgets = [
-        { title: "Luz", value: "20", date: "20/10/2021" },
+        { title: "Luz", value: luz?.value ?? -1, date: format(luzDate, "dd/MM/yyyy - hh:mm aaaa") },
         { title: "Temperatura", value: temp?.value ?? -1, date: format(tempDate, "dd/MM/yyyy - hh:mm aaaa") },
+        { title: "Humedad", value: hum?.value ?? 0, date: format(humDate, "dd/MM/yyyy - hh:mm aaaa") },
         { title: "Gas", value: gas?.value ?? 0, date: format(gasDate, "dd/MM/yyyy - hh:mm aaaa") },
     ]
 

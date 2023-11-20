@@ -114,7 +114,7 @@ model SensorLog {
   id         String @id @default(cuid())
   type       String
   value      String
-  userId    String
+  userId    String?
   createdAt  DateTime @default(now())
 
 }

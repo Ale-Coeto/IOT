@@ -26,7 +26,7 @@ const NavDesktop = ({ routes }: { routes: route[] }) => {
             <div className="flex flex-row gap-4">
                 <div className="flex flex-row gap-2 items-center">
                     <BsHouseLock className="text-xl" />
-                    <h1 className="text-xl font-bold">Magic House</h1>
+                    <h1 className="text-xl font-bold">Safe Space</h1>
                 </div>
 
                 <span className="text-gray-500">/</span>
