@@ -23,7 +23,7 @@ const NavMobile = ({ routes }: { routes: route[] }) => {
 
 
     return (
-        <div className="w-full z-50 bg-secondary border-b fixed top-0 right-0 left-0 text-white text-2xl bg-emerald-400 bg-opacity-95" onClick={() => setOpen(!open)}>
+        <div className="md:invisible w-full z-50 bg-secondary border-b fixed top-0 right-0 left-0 text-white text-2xl bg-emerald-400 bg-opacity-95" onClick={() => setOpen(!open)}>
             <div className="z-50 flex flex-row justify-between px-4 pt-3">
                 <FiMenu className="pb-3 text-4xl" />
 

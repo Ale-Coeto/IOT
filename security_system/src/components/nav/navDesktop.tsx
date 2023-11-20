@@ -6,10 +6,10 @@ import NavElement from "./navElement";
 interface route {
     title: string;
     route: string;
-    path: string; 
+    path: string;
 }
 
-const NavDesktop = ({routes}:{routes:route[]}) => {
+const NavDesktop = ({ routes }: { routes: route[] }) => {
     const router = useRouter();
     const path = usePathname();
 
@@ -22,7 +22,7 @@ const NavDesktop = ({routes}:{routes:route[]}) => {
     // console.log(selected)
 
     return (
-        <div className="invisible h-0 md:h-auto md:visible flex items-center justify-between mb-8">
+        <div className="fixed right-0 left-0 invisible h-0 md:h-auto md:visible flex items-center justify-between mb-8 p-4 pr-4">
             <div className="flex flex-row gap-4">
                 <div className="flex flex-row gap-2 items-center">
                     <BsHouseLock className="text-xl" />
